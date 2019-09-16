@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define STACK_MAX_SIZE 10
+#define STACK_MAX_SIZE 5
 
 #define STACK_OVERFLOW  -100
 #define ERROR_STACK_OVERFLOW printf("Error. Stack overflow\n");
@@ -18,12 +18,21 @@ typedef struct stack
 
 void push(stc *stack, const int value)
 {
+	if (stack->size >= STACK_MAX_SIZE) {
+		ERROR_STACK_OVERFLOW;
+		exit(STACK_OVERFLOW);
+	}
 	stack->data[stack->size] = value;
 	stack->size++;
 }
 
 int pop(stc *stack)
 {
+	if (stack->size == 0)
+	{
+		ERROR_STACK_UNDERFLOW;
+		exit(STACK_UNDERFLOW);
+	}
 	stack->size--;
 	return stack->data[stack->size];
 }
