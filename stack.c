@@ -65,7 +65,6 @@ void free_stack(stc *stack)
 	{
 		pop(stack);
 	}
-	free(stack->data);
 	STACK_WAS_CLEARED;
 }
 
